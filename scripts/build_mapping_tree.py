@@ -61,6 +61,11 @@ MANUAL_OVERRIDES = {
         "leagueoflegends.com":      ("riot games", "tencent"),
         "riotgames.com":            ("riot games", "tencent"),
 
+        # --- TakeTwo Interactive ---
+        "zynga.com":                ("zynga", "take two interactive"),
+        "rockstargames.com":        ("rockstar games", "take two interactive"),
+        "take2games.com":           ("take two interatctive", "take two interactive"),
+
         # --- SAS Institute ---
         "sas.com":                  ("sas institute", "sas institute"),
         "aimatch.com":              ("sas institute", "sas institute"),
@@ -71,6 +76,8 @@ MANUAL_OVERRIDES = {
         "mts.ru":                   ("mobile telesystems", "afk sistema"),
 
         # --- Miscellaneous ---
+        "chartboost.com":           ("chartboost", "loopme"),
+        "t13.io":                   ("freestar", "freestar"),
         "destinythegame.com":       ("bungie", "sony"),
         "wbmdstatic.com":           ("webmd", "webmd"),
         "greatamericancountry.com": ("great american media", "great american media"),
@@ -82,16 +89,21 @@ MANUAL_OVERRIDES = {
 
 # Maps normalized entity names to their canonical replacement.
 ENTITY_NAME_REPLACEMENTS = {
+    # name consistency
     "hearst":                           "hearst communications",
+    "slack":                            "slack technologies",
     "ibm":                              "international business machines",
     "iab":                              "interactive advertising bureau",
     "deutsche post":                    "deutsche post dhl",
     "visually crm":                     "visually",
     "narrative":                        "narrative i/o",
+    "narrative i o":                    "narrative i/o",
     "online solution":                  "online solution int",
     "fluct gsm div":                    "fluct",
+    "take two":                         "take two interactive",
+
+    # corporate renamings / acquisitions
     # "gannett":      "usa today",
-    "slack":                            "slack technologies",
     "scripps networks":                 "warner bros discovery",
     
     # edge cases where "suffix" appears as prefix
@@ -115,7 +127,8 @@ PARENT_OVERRIDES = {
     # ""
     # "slack technologies":     "salesforce",
     # "riot games":             "tencent",
-    # "riot games inc tencent subsidiary": "tencent"
+    # "riot games inc tencent subsidiary": "tencent",
+    # "cookie trust":           "interactive advertising bureau"
 }
 
 
