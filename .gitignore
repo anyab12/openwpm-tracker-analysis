@@ -1,0 +1,66 @@
+# -----------------------------
+# Python cache/build artifacts
+# -----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# -----------------------------
+# Virtual environments
+# -----------------------------
+.venv/
+venv/
+env/
+
+# -----------------------------
+# Secrets and local configuration
+# -----------------------------
+.env
+*.env
+config.local.*
+secrets.*
+*.pem
+*.key
+
+# -----------------------------
+# Raw crawl databases
+# Keep OpenWPM SQLite/database outputs out of Git.
+# -----------------------------
+*.sqlite
+*.sqlite3
+*.db
+
+# -----------------------------
+# Logs and temporary files
+# -----------------------------
+*.log
+*.tmp
+*.temp
+
+# -----------------------------
+# OS/editor files
+# -----------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# -----------------------------
+# OpenWPM/Docker/runtime artifacts
+# These should stay in the OpenWPM environment, not this repo.
+# -----------------------------
+docker-volume/
+screenshots/
+browser-profiles/
+crawl-data/
+tmp/
+temp/
+
+# -----------------------------
+# Accidental root-level CSV outputs
+# CSVs intentionally placed in data/ or results/ can be tracked.
+# -----------------------------
+/*.csv
