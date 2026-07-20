@@ -93,6 +93,7 @@ MULTI_TOKEN_ENTITY_SUFFIXES = {
     ('s', 'a'),                       # S.A.
     ('a', 's'),                       # A.S., A/S
     ('s', 'l'),                       # S.L.
+    ('l', 'p'),                       # L.P.
     # ('e', 'v'),                       # e.V. 
     # ('e', 'k'),                       # e.K.
     # ('d', 'd'),                       # d.d.
