@@ -64,3 +64,4 @@ temp/
 # CSVs intentionally placed in data/ or results/ can be tracked.
 # -----------------------------
 /*.csv
+server_work.bundle

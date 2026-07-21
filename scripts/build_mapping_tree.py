@@ -1,5 +1,5 @@
 """
-Script: /home/anya/Openwpm/build_mapping_tree.py
+Script: /home/anya/openwpm-tracker-analysis/build_mapping_tree.py
 
 Author: Anya Barringer, aided by Claude Sonnet 4.6 and
         Codestral through Furman University BoodleBox
@@ -22,115 +22,16 @@ import logging
 import pandas as pd
 from collections import defaultdict
 from bigtree import Node, Tree, dataframe_to_tree, tree_to_dataframe
-from utils import normalize_string, strip_suffixes
+from utilities.utils import normalize_string, strip_suffixes
+from utilities.treemap_preprocessing_constants import MANUAL_OVERRIDES, ENTITY_NAME_REPLACEMENTS, PARENT_OVERRIDES
 
 
-# --- CONSTANTS & PATHS ---
+# --- CONSTANTS ---
 DDG_ENTITIES_PATH = "/home/anya/tracker-radar/entities/"
 DISCONNECT_PATH = "/home/anya/disconnect-tracking-protection/entities.json"
 RAW_CONCAT_PATH = "data/raw_concatenated_map.csv"
 CANONICAL_PATH = "data/canonical_domain_map.csv"
 TREE_OUTPUT_CSV = "data/output_tree.csv"
-
-# --- MANUAL OVERRIDES ---
-# Hardcoded editorial decisions with highest priority in the cascade.
-# Structure: { domain: (subsidiary_entity, parent_entity) }
-# Correctly maps any missing or misattributed domains (e.g. dt.fox,
-# destinythegame.com). Naming conventions and hierarchy decisions
-# dealt with below in ENTITY_NAME_REPLACEMENTS and PARENT_OVERRIDES.
-MANUAL_OVERRIDES = {
-        # --- Fox Corporation ---
-        "dt.fox":                   ("fox", "fox corporation"),
-        "apt.fox":                  ("fox", "fox corporation"),
-        "strike.fox":               ("fox", "fox corporation"),
-
-        # --- Salesforce ---
-        "sfdcdigital.com":          ("salesforce", "salesforce"),
-
-        # --- Disney / National Geographic ---
-        "disneyaccount.com":        ("disney", "disney"),
-        "natgeofe.com":             ("national geographic", "disney"),
-
-        # --- The Weather Company - from IBM to Francisco Partners ---
-        "weather.com":              ("weather company", "francisco partners"),
-        "weatherfx.com":            ("weather company", "francisco partners"),
-        "wfxtriggers.com":          ("weather company", "francisco partners"),
-        "w-x.co":                   ("weather company", "francisco partners"),
-
-        # --- Riot Games -> Tencent ---
-        "leagueoflegends.com":      ("riot games", "tencent"),
-        "riotgames.com":            ("riot games", "tencent"),
-
-        # --- TakeTwo Interactive ---
-        "zynga.com":                ("zynga", "take two interactive"),
-        "rockstargames.com":        ("rockstar games", "take two interactive"),
-        "take2games.com":           ("take two interatctive", "take two interactive"),
-
-        # --- SAS Institute ---
-        "sas.com":                  ("sas institute", "sas institute"),
-        "aimatch.com":              ("sas institute", "sas institute"),
-
-        # --- Russian domains ---
-        "tns-counter.ru":           ("mediascope", "mediascope"),
-        "sputnik.ru":               ("rostelecom", "rostelecom"),
-        "mts.ru":                   ("mobile telesystems", "afk sistema"),
-
-        # --- Miscellaneous ---
-        "chartboost.com":           ("chartboost", "loopme"),
-        "t13.io":                   ("freestar", "freestar"),
-        "destinythegame.com":       ("bungie", "sony"),
-        "wbmdstatic.com":           ("webmd", "webmd"),
-        "greatamericancountry.com": ("great american media", "great american media"),
-        # bungie.net = bungie, sony
-    }
-
-
-# --- PREPROCESSING CONSTANTS ---
-
-# Maps normalized entity names to their canonical replacement.
-ENTITY_NAME_REPLACEMENTS = {
-    # name consistency
-    "hearst":                           "hearst communications",
-    "slack":                            "slack technologies",
-    "ibm":                              "international business machines",
-    "iab":                              "interactive advertising bureau",
-    "deutsche post":                    "deutsche post dhl",
-    "visually crm":                     "visually",
-    "narrative":                        "narrative i/o",
-    "narrative i o":                    "narrative i/o",
-    "online solution":                  "online solution int",
-    "fluct gsm div":                    "fluct",
-    "take two":                         "take two interactive",
-
-    # corporate renamings / acquisitions
-    # "gannett":      "usa today",
-    "scripps networks":                 "warner bros discovery",
-    
-    # edge cases where "suffix" appears as prefix
-    "ltd sape":                         "sape",
-    "llc smi2":                         "smi2",
-    "llc internest holding":            "internest holding",
-    "llc amberdata":                    "amberdata",
-    "llc palitrumlab":                  "palitrumlab",
-    "limited liability company ngenix": "ngenix"
-}
-
-# Maps normalized subsidiary names to their correct parent.
-# Key = normalized subsidiary entity name
-# Value = normalized correct parent entity name
-PARENT_OVERRIDES = {
-    # "instagram":              "meta",
-    # "facebook":               "meta",
-    # "google":                 "alphabet",
-    # "youtube":                "alphabet",
-    # "github":                 "microsoft",
-    # ""
-    # "slack technologies":     "salesforce",
-    # "riot games":             "tencent",
-    # "riot games inc tencent subsidiary": "tencent",
-    # "cookie trust":           "interactive advertising bureau"
-}
-
 
 # --- LOGGING SETUP ---
 logging.basicConfig(
@@ -138,6 +39,7 @@ logging.basicConfig(
     format="%(asctime)s — %(name)s — %(levelname)s — %(message)s"
 )
 logger = logging.getLogger(__name__)
+
 
 
 # =============================================================================

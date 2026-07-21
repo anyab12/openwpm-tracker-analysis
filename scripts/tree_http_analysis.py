@@ -1,5 +1,5 @@
 """
-Script: /home/anya/Openwpm/tree_http_analysis.py
+Script: /home/anya/openwpm-tracker-analysis/tree_http_analysis.py
 
 Author: Anya Barringer, aided by Claude Sonnet 4.6 and
         Codestral through Furman University BoodleBox
@@ -27,7 +27,7 @@ import pandas as pd
 from collections import defaultdict
 from types import SimpleNamespace
 from bigtree import Node, Tree, dataframe_to_tree
-from utils import get_registered_domain, get_node_info, load_tree, classify_relationship
+from utilities.utils import get_registered_domain, get_node_info, load_tree, classify_relationship
 
 
 # --- CONSTANTS ---
