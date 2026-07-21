@@ -111,6 +111,7 @@ ENTITY_NAME_REPLACEMENTS = {
     # corporate renamings / acquisitions
     # "gannett":      "usa today",
     "scripps networks":                 "warner bros discovery",
+    "unity ironsource":                 "unity",
     
     # edge cases where "suffix" appears as prefix
     "ltd sape":                         "sape",
