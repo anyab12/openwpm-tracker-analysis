@@ -36,6 +36,7 @@ MANUAL_OVERRIDES = {
 
         # --- Salesforce ---
         "sfdcdigital.com":          ("salesforce", "salesforce"),
+        "salesforce-scrt.com":      ("salesforce", "salesforce"),
 
         # --- Disney / National Geographic ---
         "disneyaccount.com":        ("disney", "disney"),
@@ -78,6 +79,9 @@ MANUAL_OVERRIDES = {
         "beeperstatus.com":         ("beeper", "automattic"),
         "pocketcasts.com":          ("pocket casts", "automattic"),
         "gravatar.com":             ("gravatar", "automattic"),
+
+        # --- Manually discovered from crawl data inspection ---
+        "rokt-api.com":             ("rokt", "rokt"),
 
         # --- Miscellaneous ---
         "chartboost.com":           ("chartboost", "loopme"),
