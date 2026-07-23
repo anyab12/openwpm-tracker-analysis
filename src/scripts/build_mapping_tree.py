@@ -22,8 +22,8 @@ import logging
 import pandas as pd
 from collections import defaultdict
 from bigtree import Node, Tree, dataframe_to_tree, tree_to_dataframe
-from utilities.utils import normalize_string, strip_suffixes
-from utilities.treemap_preprocessing_constants import MANUAL_OVERRIDES, ENTITY_NAME_REPLACEMENTS, PARENT_OVERRIDES
+from src.utilities.utils import normalize_string, strip_suffixes
+from src.utilities.treemap_preprocessing_constants import MANUAL_OVERRIDES, ENTITY_NAME_REPLACEMENTS, PARENT_OVERRIDES
 
 
 # --- CONSTANTS ---
@@ -593,12 +593,12 @@ def main():
     canonical_df = preprocess_combined(raw_df, CANONICAL_PATH)
     logger.info(f"Review {CANONICAL_PATH} before proceeding.")
 
-    # # --- STEP 3: BUILD TREE & INDEX ---
-    # logger.info("=== Step 3: Building entity tree and domain index ===")
-    # root, domain_to_node = build_entity_tree(canonical_df, TREE_OUTPUT_CSV)
+    # --- STEP 3: BUILD TREE & INDEX ---
+    logger.info("=== Step 3: Building entity tree and domain index ===")
+    root, domain_to_node = build_entity_tree(canonical_df, TREE_OUTPUT_CSV)
 
-    # logger.info(f"Tree contains {len(domain_to_node)} mapped domains.")
-    # logger.info(f"=== Build_mapping_tree.py complete. Entity tree exported to {TREE_OUTPUT_CSV} and ready for analysis. ===")
+    logger.info(f"Tree contains {len(domain_to_node)} mapped domains.")
+    logger.info(f"=== Build_mapping_tree.py complete. Entity tree exported to {TREE_OUTPUT_CSV} and ready for analysis. ===")
 
 
 if __name__ == "__main__":
