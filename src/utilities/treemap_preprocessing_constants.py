@@ -1,5 +1,5 @@
 """
-Script: /home/anya/openwpm-tracker-analysis/utilities/treemap_preprocessing_constants.py
+Script: /openwpm-tracker-analysis/src/utilities/treemap_preprocessing_constants.py
 
 Author: Anya Barringer, aided by Claude Sonnet 4.6 and
         Codestral through Furman University BoodleBox

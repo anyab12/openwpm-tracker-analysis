@@ -1,5 +1,5 @@
 """
-Script: /home/anya/openwpm-tracker-analysis/build_mapping_tree.py
+Script: /openwpm-tracker-analysis/src/scripts/build_mapping_tree.py
 
 Author: Anya Barringer, aided by Claude Sonnet 4.6 and
         Codestral through Furman University BoodleBox
