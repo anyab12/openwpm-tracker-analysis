@@ -26,37 +26,34 @@ src/utilities/
   Python utility scripts. Contain constants and helper functions.
 
 results/
-  Generated output CSVs from analysis runs. Only selected safe outputs
-  should be committed.
+  Generated output CSVs from analysis runs. Only selected safe outputs should be committed.
 
 results/sample_run/
-  Optional small sample outputs that can be shared for reproducibility
-  or inspection.
+  Optional small sample outputs that can be shared for reproducibility or inspection.
 
 
 ## Main Scripts
 
 src/scripts/build_mapping_tree.py
-  Builds domain/entity hierarchy from domain mapping sources and manual
-  override rules.
+  Builds domain/entity hierarchy from domain mapping sources and manual override rules.
 
 src/scripts/tree_http_analysis.py
-  Loads OpenWPM crawl data, classifies HTTP requests, and exports request-level
-  visit-level, and tracker-prevalence summaries.
+  Loads OpenWPM crawl data, classifies HTTP requests, and exports
+  request-level visit-level, and tracker-prevalence summaries.
 
 
 ## Included CSV Files
 
 data/ folder includes mapping artifacts such as
-  raw_concatenated_map.csv of raw domain-entity databases
-  canonical_domain_map.csv of preprocessed domain-entity map
-  output_tree.csv of exported tree map
+  - raw_concatenated_map.csv of raw domain-entity databases
+  - canonical_domain_map.csv of preprocessed domain-entity map
+  - output_tree.csv of exported tree map
 
 results/ folder includes output analysis results and stats
-  all_requests_classified.csv
-  full_visit_summaries.csv
-  tracker_prevalence_stats.csv
-  sample_run/ folder may include selected derived outputs from small test run
+  - all_requests_classified.csv
+  - full_visit_summaries.csv
+  - tracker_prevalence_stats.csv
+  - sample_run/ folder may include selected derived outputs from small test run
 
 ## Excluded Files
 
@@ -69,13 +66,17 @@ are also excluded.
 ## Setup
 
 Clone this repo alongside the two tracker database sources:
+    ```
     git clone https://github.com/DuckDuckGo/tracker-radar.git
     git clone https://github.com/disconnectme/disconnect-tracking-protection.git
     git clone https://github.com/anyab12/openwpm-tracker-analysis.git
+    ```
 
-Enter project directory and install required modules. Also can be installed in .venv.
+Enter project directory and install required modules. Also can be installed in .venv.'
+    ```
     cd openwpm-tracker-analysis
     pip install -r requirements.txt
+    ```
 
 Place your OpenWPM crawl SQLite data file one level up in sibling directory (`../crawl_data/crawl-data-6.15.sqlite`)
 OR set `OPENWPM_DB_PATH` to point elsewhere:
@@ -83,8 +84,10 @@ OR set `OPENWPM_DB_PATH` to point elsewhere:
 
 
 ## Run
+    ```
     python3 -m src.scripts.build_mapping_tree
     python3 -m src.scripts.tree_http_analysis
+    ```
 
 Check output CSV files, specifically canonical_domain_map and output_tree, after building tree
 to ensure correct mapping before moving to classification.
