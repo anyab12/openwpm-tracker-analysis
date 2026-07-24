@@ -66,13 +66,34 @@ Environment runtime files, logs, large generated outputs, and other crawl data
 are also excluded.
 
 
-## Running the Analysis
+## Setup
 
-From the repository root run:
-  python3 -m src.scripts.build_mapping_tree
-  - check output CSV files specifically canonical_domain_map and output_tree
-  python3 -m src.scripts.tree_http_analysis
+Clone this repo alongside the two tracker database sources:
+    git clone https://github.com/DuckDuckGo/tracker-radar.git
+    git clone https://github.com/disconnectme/disconnect-tracking-protection.git
+    git clone https://github.com/anyab12/openwpm-tracker-analysis.git
 
-Script expects raw OpenWPM database files to exist outside this repository.
-Update DB_PATH constant in file, or add as argument in terminal command, if
-using a different crawl database.
+Enter project directory and install required modules. Also can be installed in .venv.
+    cd openwpm-tracker-analysis
+    pip install -r requirements.txt
+
+Place your OpenWPM crawl SQLite data file one level up in sibling directory (`../crawl_data/crawl-data-6.15.sqlite`)
+OR set `OPENWPM_DB_PATH` to point elsewhere:
+    export OPENWPM_DB_PATH=/your/path/to/crawl.sqlite
+
+
+## Run
+    python3 -m src.scripts.build_mapping_tree
+    python3 -m src.scripts.tree_http_analysis
+
+Check output CSV files, specifically canonical_domain_map and output_tree, after building tree
+to ensure correct mapping before moving to classification.
+
+
+## Related Project
+
+For the rest of the OpenWPM tracking analysis research work, see Graham Fink's repository at
+https://github.com/gfink15/Tracking-Analysis.git and clone alongside this one. Graham's analysis
+scripts make heavy use of the mapping tree and classification algorithms from this
+openwpm-tracker-analysis repository. To run some of his basic analysis scripts, specifically trackers.py
+and cookies.py, be sure to clone this repository and run build_mapping_tree.py first.

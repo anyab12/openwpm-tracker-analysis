@@ -27,11 +27,13 @@ from src.utilities.treemap_preprocessing_constants import MANUAL_OVERRIDES, ENTI
 
 
 # --- CONSTANTS ---
-DDG_ENTITIES_PATH = "/home/anya/tracker-radar/entities/"
-DISCONNECT_PATH = "/home/anya/disconnect-tracking-protection/entities.json"
-RAW_CONCAT_PATH = "data/raw_concatenated_map.csv"
-CANONICAL_PATH = "data/canonical_domain_map.csv"
-TREE_OUTPUT_CSV = "data/output_tree.csv"
+from config import (
+    DDG_ENTITIES_PATH,
+    DISCONNECT_PATH,
+    RAW_CONCAT_CSV,
+    CANONICAL_CSV,
+    TREE_OUTPUT_CSV
+)
 
 # --- LOGGING SETUP ---
 logging.basicConfig(
@@ -585,13 +587,13 @@ def main():
     df_manual     = flatten_manual_overrides(MANUAL_OVERRIDES)
 
     logger.info("=== Concatenating sources ===")
-    raw_df = concatenate_sources(df_ddg, df_disconnect, df_manual, RAW_CONCAT_PATH)
-    logger.info(f"Review {RAW_CONCAT_PATH} before proceeding.")
+    raw_df = concatenate_sources(df_ddg, df_disconnect, df_manual, RAW_CONCAT_CSV)
+    logger.info(f"Review {RAW_CONCAT_CSV} before proceeding.")
 
     # --- STEP 2: PREPROCESS ---
     logger.info("=== Step 2: Preprocessing and conflict resolution ===")
-    canonical_df = preprocess_combined(raw_df, CANONICAL_PATH)
-    logger.info(f"Review {CANONICAL_PATH} before proceeding.")
+    canonical_df = preprocess_combined(raw_df, CANONICAL_CSV)
+    logger.info(f"Review {CANONICAL_CSV} before proceeding.")
 
     # --- STEP 3: BUILD TREE & INDEX ---
     logger.info("=== Step 3: Building entity tree and domain index ===")

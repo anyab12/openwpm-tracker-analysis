@@ -31,11 +31,13 @@ from src.utilities.utils import get_registered_domain, get_node_info, load_tree,
 
 
 # --- CONSTANTS ---
-DB_PATH              = "/home/anya/Openwpm/crawl-data-6.15.sqlite"
-ENTITY_TREE_CSV      = "data/output_tree.csv"
-OUTPUT_REQUESTS_CSV  = "results/all_requests_classified.csv"
-OUTPUT_SUMMARIES_CSV = "results/full_visit_summaries.csv"
-OUTPUT_TRACKERS_CSV  = "results/tracker_prevalence_stats.csv"
+from config import (
+    DB_PATH,
+    TREE_OUTPUT_CSV,
+    OUTPUT_REQUESTS_CSV,
+    OUTPUT_SUMMARIES_CSV,
+    OUTPUT_TRACKERS_CSV
+)
 
 # --- LOGGING SETUP ---
 logging.basicConfig(
@@ -356,7 +358,7 @@ def main():
     # Step 1: Load resources
     logger.info("--- Step 1: Loading Data and Entity Tree ---")
     site_visits_df, http_requests_df, incomplete_map = load_data()
-    root, domain_to_node = load_tree(ENTITY_TREE_CSV)
+    root, domain_to_node = load_tree(TREE_OUTPUT_CSV)
     
     # Step 2: Classify requests
     logger.info("--- Step 2: Classifying Requests ---")
