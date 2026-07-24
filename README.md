@@ -66,20 +66,15 @@ are also excluded.
 ## Setup
 
 Clone this repo alongside the two tracker database sources:
-
     ```
     git clone https://github.com/DuckDuckGo/tracker-radar.git
-
     git clone https://github.com/disconnectme/disconnect-tracking-protection.git
-
     git clone https://github.com/anyab12/openwpm-tracker-analysis.git
     ```
 
-Enter project directory and install required modules. Also can be installed in .venv.'
-
+Enter project directory and install required modules. Also can be installed in .venv.
     ```
     cd openwpm-tracker-analysis
-    
     pip install -r requirements.txt
     ```
 
