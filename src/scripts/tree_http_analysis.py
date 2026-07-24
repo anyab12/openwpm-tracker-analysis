@@ -164,7 +164,7 @@ def classify_requests(
         visit_complete  = 0 if timeout_command is not None else 1
 
         visit_requests   = http_requests_df[http_requests_df['visit_id'] == v_id].copy()
-        visit_top_domain = get_registered_domain(site_url)
+        visit_top_domain = get_registered_domain(site_url) # extract domain from site_visits in case top_level_url is empty
 
         if visit_top_domain:
             first_party_coverage[visit_top_domain] += 1
