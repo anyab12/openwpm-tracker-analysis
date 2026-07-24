@@ -1,5 +1,5 @@
 """
-Script: /openwpm-tracker-analysis/src/utilities/utils.py
+Script: /src/utilities/utils.py
 
 Author: Anya Barringer, aided by Claude Sonnet 4.6 and
         Codestral through Furman University BoodleBox

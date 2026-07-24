@@ -13,11 +13,17 @@ based on both technical domain comparison and a domain-to-entity hierarchy.
 
 ## Repository Structure
 
-scripts/
-  Python analysis scripts.
+docs/
+  Notes, workflow documentation, and methodology notes.
 
 data/
   Selected CSV inputs and mapping artifacts used by the analysis pipeline.
+
+src/scripts/
+  Python analysis scripts. Import from src/utilities as needed.
+
+src/utilities/
+  Python utility scripts. Contain constants and helper functions.
 
 results/
   Generated output CSVs from analysis runs. Only selected safe outputs
@@ -27,17 +33,14 @@ results/sample_run/
   Optional small sample outputs that can be shared for reproducibility
   or inspection.
 
-docs/
-  Notes, workflow documentation, and methodology notes.
-
 
 ## Main Scripts
 
-scripts/build_mapping_tree.py
+src/scripts/build_mapping_tree.py
   Builds domain/entity hierarchy from domain mapping sources and manual
   override rules.
 
-scripts/tree_http_analysis.py
+src/scripts/tree_http_analysis.py
   Loads OpenWPM crawl data, classifies HTTP requests, and exports request-level
   visit-level, and tracker-prevalence summaries.
 
@@ -66,7 +69,9 @@ are also excluded.
 ## Running the Analysis
 
 From the repository root run:
-  python3 scripts/tree_http_analysis.py
+  python3 -m src.scripts.build_mapping_tree
+  - check output CSV files specifically canonical_domain_map and output_tree
+  python3 -m src.scripts.tree_http_analysis
 
 Script expects raw OpenWPM database files to exist outside this repository.
 Update DB_PATH constant in file, or add as argument in terminal command, if
