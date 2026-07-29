@@ -82,12 +82,14 @@ MANUAL_OVERRIDES = {
 
         # --- Manually discovered from crawl data inspection ---
         "rokt-api.com":             ("rokt", "rokt"),
+        "mediagotechnology.com":    ("baidu", "baidu"),
 
         # --- Miscellaneous ---
         "chartboost.com":           ("chartboost", "loopme"),
         "t13.io":                   ("freestar", "freestar"),
         "sizmek.com":               ("amazon", "amazon"),
         "pointroll.com":            ("pointroll", "amazon"),
+        "admarvel.com":             ("adcolony", "digital turbine"),
         "destinythegame.com":       ("bungie", "sony"),
         "wbmdstatic.com":           ("webmd", "webmd"),
         "profootballhof.com":       ("pro football hall of fame", "pro football hall of fame"),
