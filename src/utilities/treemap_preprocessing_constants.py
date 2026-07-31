@@ -80,6 +80,13 @@ MANUAL_OVERRIDES = {
         "pocketcasts.com":          ("pocket casts", "automattic"),
         "gravatar.com":             ("gravatar", "automattic"),
 
+        # --- Criteo acquisitions ---
+        "iponweb.com":              ("iponweb", "criteo"),
+        "iponweb.net":              ("iponweb", "criteo"),
+        "bidswitch.com":            ("bidswitch", "criteo"),
+        "bidswitch.net":            ("bidswitch", "criteo"),
+        "mfadsrvr.com":             ("bidswitch", "criteo"),
+
         # --- Manually discovered from crawl data inspection ---
         "rokt-api.com":             ("rokt", "rokt"),
         "mediagotechnology.com":    ("baidu", "baidu"),
@@ -152,4 +159,6 @@ PARENT_OVERRIDES = {
     # "beeper":                 "automattic",
     # "pocket casts":           "automattic",
     # "gravatar":               "automattic",
+    # "bidswitch":              "criteo",
+    # "iponweb":                "criteo",
 }
