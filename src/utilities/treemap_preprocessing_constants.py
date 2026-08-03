@@ -102,6 +102,7 @@ MANUAL_OVERRIDES = {
         "profootballhof.com":       ("pro football hall of fame", "pro football hall of fame"),
         "greatamericancountry.com": ("great american media", "great american media"),
         "bungie.net":               ("bungie", "sony"),
+        "bungie.net":               ("bungie", "sony"),
     }
 
 
