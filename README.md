@@ -67,7 +67,7 @@ are also excluded.
 
 Clone this repo alongside the two tracker database sources:
 
-    git clone https://github.com/DuckDuckGo/tracker-radar.git
+    git clone https://github.com/duckduckgo/tracker-radar.git
     git clone https://github.com/disconnectme/disconnect-tracking-protection.git
     git clone https://github.com/anyab12/openwpm-tracker-analysis.git
     
