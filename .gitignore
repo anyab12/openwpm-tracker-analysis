@@ -60,8 +60,20 @@ tmp/
 temp/
 
 # -----------------------------
-# Accidental root-level CSV outputs
-# CSVs intentionally placed in data/ or results/ can be tracked.
+# Data and Results Management
 # -----------------------------
+# Ignore everything in data/ EXCEPT the output tree
+data/*
+!data/output_tree.csv
+
+# Ignore everything in results/ EXCEPT the sample_run folder
+results/*
+!results/sample_run/
+!results/sample_run/**
+
+# Ignore accidental root-level CSV outputs
 /*.csv
+
+# Git transfer artifacts
 server_work.bundle
+*.bundle
