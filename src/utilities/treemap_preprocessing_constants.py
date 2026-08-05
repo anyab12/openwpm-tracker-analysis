@@ -57,6 +57,10 @@ MANUAL_OVERRIDES = {
         "rockstargames.com":        ("rockstar games", "take two interactive"),
         "take2games.com":           ("take two interatctive", "take two interactive"),
 
+        # --- Connexity -> Taboola ---
+        "connexity.com":            ("connexity", "taboola"),
+        "connexity.net":            ("connexity", "taboola"),
+
         # --- SAS Institute ---
         "sas.com":                  ("sas institute", "sas institute"),
         "aimatch.com":              ("sas institute", "sas institute"),
@@ -236,4 +240,5 @@ PARENT_OVERRIDES = {
     "bungie":                 "sony",
     "ab tasty":               "everstone capital",
     "wingify":                "everstone capital",
+    "connexity":              "taboola",
 }
