@@ -335,6 +335,17 @@ def resolve_dba_entities(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
+# consider adding function to normalize spacing between words in entity names
+# eg "ziffdavis" vs "ziff davis"
+# potential logic:
+# def remove_middle_whitespace(df: pd.DataFrame) -> pd.DataFrame:
+#     for duplicate domain entries
+#         if sub/parent a .replace(" ", "") == sub/parent b .replace(" ", "")
+#         add pair to ENTITY_NAME_REPLACEMENTS
+#         OPTIONAL replace / normalize here
+#         (else will be normalized in next function apply_name_replacements)
+#     return df
+
 def apply_name_replacements(series: pd.Series) -> pd.Series:
     """
     Step 3: Replace known entity name variants with their canonical form.

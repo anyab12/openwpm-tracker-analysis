@@ -42,6 +42,10 @@ MANUAL_OVERRIDES = {
         "disneyaccount.com":        ("disney", "disney"),
         "natgeofe.com":             ("national geographic", "disney"),
 
+        # --- IBM acquisitions ---
+        "hashicorp.com":            ("hashicorp", "international business machines"),
+        "datastax.com":             ("datastax", "international business machines"),
+
         # --- The Weather Company - from IBM to Francisco Partners ---
         "weather.com":              ("weather company", "francisco partners"),
         "weatherfx.com":            ("weather company", "francisco partners"),
@@ -124,11 +128,13 @@ ENTITY_NAME_REPLACEMENTS = {
     "fluct gsm div":                    "fluct",
     "take two":                         "take two interactive",
     "awes":                             "awesome",
+    "vk":                               "vkontakte",
 
     # corporate renamings / acquisitions
     # "gannett":      "usa today",
     "scripps networks":                 "warner bros discovery",
     "unity ironsource":                 "unity",
+    "cm group":                         "marigold",
     
     # edge cases where "suffix" appears as prefix
     "ltd sape":                         "sape",
@@ -237,8 +243,11 @@ PARENT_OVERRIDES = {
     "gravatar":               "automattic",
     "bidswitch":              "criteo",
     "iponweb":                "criteo",
+    "hashicorp":              "international business machines",
+    "datastax":               "international business machines",
     "bungie":                 "sony",
     "ab tasty":               "everstone capital",
     "wingify":                "everstone capital",
     "connexity":              "taboola",
+    "emma":                   "marigold",
 }
