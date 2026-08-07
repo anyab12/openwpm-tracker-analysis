@@ -52,6 +52,11 @@ MANUAL_OVERRIDES = {
         "wfxtriggers.com":          ("weather company", "francisco partners"),
         "w-x.co":                   ("weather company", "francisco partners"),
 
+        # --- USA Today acquisitions ---
+        "njherald.com":             ("usa today", "usa today"),
+        "southbendtribune.com":     ("usa today", "usa today"),
+        "statesman.com":            ("hearst communications", "hearst communications"),
+
         # --- Riot Games -> Tencent ---
         "leagueoflegends.com":      ("riot games", "tencent"),
         "riotgames.com":            ("riot games", "tencent"),
@@ -129,9 +134,12 @@ ENTITY_NAME_REPLACEMENTS = {
     "take two":                         "take two interactive",
     "awes":                             "awesome",
     "vk":                               "vkontakte",
+    "quincy newspaers":                 "quincy newspapers",
 
     # corporate renamings / acquisitions
-    # "gannett":      "usa today",
+    "gannett":                          "usa today",
+    "gatehouse media":                  "usa today",
+    "local media group":                "usa today",
     "scripps networks":                 "warner bros discovery",
     "unity ironsource":                 "unity",
     "cm group":                         "marigold",
@@ -250,4 +258,8 @@ PARENT_OVERRIDES = {
     "wingify":                "everstone capital",
     "connexity":              "taboola",
     "emma":                   "marigold",
+    "wordstream":             "usa today",
+    "repository":             "usa today",
+    "herald and times group": "usa today",
+    "tribune media":          "nexstar media",
 }
