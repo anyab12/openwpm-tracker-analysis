@@ -222,7 +222,7 @@ def flatten_manual_overrides(overrides: dict) -> pd.DataFrame:
             "subsidiary_entity":    clean_subsidiary,
             "parent_entity":        clean_parent,
             "source":               "manual",
-            "priority":             3
+            "priority":             4
         })
 
     df = pd.DataFrame(rows, columns=[
@@ -356,9 +356,22 @@ def apply_name_replacements(series: pd.Series) -> pd.Series:
 def apply_parent_overrides(df: pd.DataFrame) -> pd.DataFrame:
     """
     Step 4: Enforce correct subsidiary-parent hierarchy using PARENT_OVERRIDES.
-    Keys on subsidiary_entity only.
+    Keys on subsidiary_entity only. Bumps priority to 3 for any row where correction
+    is applied and parent_entity overridden.
     """
-    df['parent_entity'] = df['subsidiary_entity'].map(PARENT_OVERRIDES).fillna(df['parent_entity'])
+    # 1. Map subsidiaries to intended parents
+    intended_parents = df['subsidiary_entity'].map(PARENT_OVERRIDES)
+    
+    # 2. Create mask for rows that actually need change
+    # (Value is in dict AND it differs from current parent_entity)
+    change_mask = intended_parents.notna() & (intended_parents != df['parent_entity'])
+    
+    # 3. Apply new parent values
+    df.loc[change_mask, 'parent_entity'] = intended_parents[change_mask]
+    
+    # 4. Bump priority to 3 for these corrected rows
+    df.loc[change_mask, 'priority'] = 3
+    
     return df
 
 def remove_duplicates(df: pd.DataFrame) -> tuple[pd.DataFrame, int, int]:
@@ -373,7 +386,7 @@ def remove_duplicates(df: pd.DataFrame) -> tuple[pd.DataFrame, int, int]:
         Where multiple sources disagree on entity ownership for the same domain,
         keep the highest-authority source. Sort ascending by priority number so
         keep='last' retains the highest-numbered (most authoritative) source.
-        Priority cascade: Manual (3) > Disconnect (2) > DDG (1)
+        Priority cascade: Manual (4) > Overridden (3) > Disconnect (2) > DDG (1)
 
     Returns:
         tuple[pd.DataFrame, int, int]: tuple containing updated dataframe index
@@ -382,7 +395,7 @@ def remove_duplicates(df: pd.DataFrame) -> tuple[pd.DataFrame, int, int]:
     # Sort ascending so highest priority number ends up last
     df = df.sort_values('priority', ascending=True)
 
-    # Phase A: drop exact triples — sources agree, row is simply redundant
+    # Phase A: Exact duplicate removal (domain + sub + par match)
     before_a = len(df)
     df = df.drop_duplicates(
         subset=['domain', 'subsidiary_entity', 'parent_entity'],
@@ -390,7 +403,7 @@ def remove_duplicates(df: pd.DataFrame) -> tuple[pd.DataFrame, int, int]:
     )
     after_a = len(df)
 
-    # Phase B: resolve domain conflicts — sources disagree on entity ownership
+    # Phase B: Domain conflict resolution (sources disagree on entity)
     before_b = len(df)
     df = df.drop_duplicates(
         subset=['domain'],
@@ -551,7 +564,7 @@ def build_entity_tree(df: pd.DataFrame, output_csv: str) -> tuple[Node, dict]:
         node.subsidiary_entity → subsidiary entity name        
         node.parent_entity     → parent entity name
         node.source            → originating dataset ("ddg", "disconnect", "manual")
-        node.priority          → source priority integer (1, 2, or 3)
+        node.priority          → source priority integer (1, 2, 3, or 4)
 
     Args:
         df:         Preprocessed canonical DataFrame with columns:
